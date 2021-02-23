@@ -18,7 +18,11 @@ public class Human implements RunAndJump {
 
     @Override
     public void jump(double height) {
-        System.out.printf("%s jumps over %f meters", name, height);
+        if (jumpAbility<height)
+            System.out.printf("%s has not enough strength to jump over this wall.\n", getName());
+        else {
+            this.jumpAbility = jumpAbility - height;
+            System.out.printf("%s runs %f meters and has only %.2f stamina left.\n", name, height,getStamina());}
     }
 
     @Override
@@ -29,7 +33,7 @@ public class Human implements RunAndJump {
 
         while (jumpAbility >= wall.getHeight()){
             jumpAbility = jumpAbility - wall.getHeight();
-            System.out.printf("%s overcomes the obstacle and has %f points of strengths left.\n", name, getJumpAbility());
+            System.out.printf("%s overcomes the obstacle and has %.2f points of strengths left.\n", name, getJumpAbility());
             break;
         }
 
@@ -41,7 +45,7 @@ public class Human implements RunAndJump {
             System.out.printf("%s has not enough of stamina to run this distance.\n", getName());
         else {
         this.stamina = stamina - distance;
-        System.out.printf("%s runs %f meters and has only %f stamina left.\n", name, distance,getStamina());}
+        System.out.printf("%s runs %f meters and has only %.2f stamina left.\n", name, distance,getStamina());}
     }
 
     @Override
@@ -51,7 +55,7 @@ public class Human implements RunAndJump {
 
         while (stamina >= treadmill.getLength()){
             stamina = stamina - treadmill.getLength();
-            System.out.printf("%s runs the treadmill and has %f points of stamina left.\n", name, getStamina());
+            System.out.printf("%s runs the treadmill and has %.2f points of stamina left.\n", name, getStamina());
             break;
         }
     }
